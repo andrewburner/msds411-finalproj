@@ -37,8 +37,8 @@ plot_num(df_pca)
 ## this is where I stopped ##
 #########################################
 
-
-
+pca_data <- prcomp(df_pca)
+fviz_eig(pca_data)
 
 
 #Clustering
