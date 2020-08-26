@@ -53,12 +53,16 @@ fa(correlation, n.obs = 142397, n.iter=100, show.legend=TRUE, fm = 'ml')
 kmeans_data_pca <- df_clean %>% select(PC1, PC2, PC3, PC4, PC5, PC6) %>% 
   kmeans(centers = 7, nstart = 25)
 
-kmeans_data <- df_pca %>% 
+kmeans_data.7 <- df_pca %>% 
   kmeans(centers = 7, nstart = 25)
 
+kmeans_data.3 <- df_pca %>% 
+  kmeans(centers = 3, nstart = 25)
+
 #Cluster Plot
-fviz_cluster(kmeans_data_pca, data = df_clean, geom="point")
 fviz_cluster(kmeans_data, data = df_pca, geom="point")
+
+fviz_cluster(kmeans_data_pca, data = df_clean, geom="point")
 
 
 
