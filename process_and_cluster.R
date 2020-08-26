@@ -32,6 +32,7 @@ plot_num(df_pca)
 # Get PCs
 pca_data <- princomp(df_pca)
 summary(pca_data)
+pca_data$loadings
 fviz_eig(pca_data)
 
 # Add PCs to the data set
@@ -59,6 +60,8 @@ kmeans_data.7 <- df_pca %>%
 kmeans_data.3 <- df_pca %>% 
   kmeans(centers = 3, nstart = 25)
 
+kmeans_data.3
+
 #Cluster Plot
 fviz_cluster(kmeans_data, data = df_pca, geom="point")
 
@@ -81,3 +84,11 @@ ggplot(centers, aes(x = reorder(variable, value), y = value)) +
   theme_bw() +
   theme(panel.border = element_rect(colour = "black", fill=NA), legend.position="none") +
   labs(x = NULL)
+
+
+
+
+
+
+
+
