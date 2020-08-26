@@ -67,15 +67,25 @@ fviz_cluster(kmeans_data, data = df_pca, geom="point")
 
 fviz_cluster(kmeans_data_pca, data = df_clean, geom="point")
 
+fviz_cluster(kmeans_data.3, data = df_pca, geom="point")
+
+df_clean <- df_clean %>% mutate(cluster = kmeans_data.3$cluster)
+
+ggplot(df_clean, aes(x = year, y = energy)) +
+  geom_point(aes(color = as.factor(cluster))) +
+  geom_smooth()
+
+ggplot(df_clean, aes(x = year, y = valence)) +
+  geom_point(aes(color = as.factor(cluster))) +
+  geom_smooth()
 
 
-################################
-### This is where I left off ###
-################################
-
+ggplot(df_clean, aes(x = year, y = danceability)) +
+  geom_point(aes(color = as.factor(cluster))) +
+  geom_smooth()
 
 #Distributions in Clusters
-centers <- data.frame(cluster = rownames(kmeans_data$centers), kmeans_data$centers)
+centers <- data.frame(cluster = rownames(kmeans_data.3$centers), kmeans_data.3$centers)
 centers <- reshape2::melt(centers)
 ggplot(centers, aes(x = reorder(variable, value), y = value)) +
   geom_bar(aes(fill = value > 0), width=0.8, stat = "identity") +
